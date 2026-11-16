@@ -4,7 +4,7 @@ Architecture: @ARCH@
 Maintainer: Mirante developers <noreply@localhost>
 Section: graphics
 Priority: optional
-Depends: libgtk-3-0t64 | libgtk-3-0, libc6, yaru-theme-gtk, yaru-theme-icon, pkexec | policykit-1
+Depends: libc6 (>= 2.34), @DEPENDS@, yaru-theme-gtk, yaru-theme-icon
 Recommends: colord
 Provides: image-viewer
 Description: image viewer with cropping and colour correction

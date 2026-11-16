@@ -1,0 +1,8 @@
+# One .deb per distribution: <suffix>|<packages it depends on there>.
+# The binaries need glibc 2.34 or newer; package names differ between releases.
+ubuntu22.04|libgtk-3-0, pkexec | policykit-1
+ubuntu24.04|libgtk-3-0t64, pkexec
+mint21|libgtk-3-0, pkexec | policykit-1
+mint22|libgtk-3-0t64, pkexec
+debian12|libgtk-3-0, pkexec
+debian13|libgtk-3-0t64, pkexec

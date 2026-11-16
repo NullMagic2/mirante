@@ -277,12 +277,19 @@ Editing is non-destructive for every format; no image file is ever written over.
 
 ## Distribution
 
-Targets: Ubuntu 24.04+, Debian 13+, Linux Mint 22+ and LMDE 7, all of which ship
-GTK 3.24, `libgtk-3-0t64` and Yaru. Build with `./build.sh` on the oldest target
-(Ubuntu 24.04) using rustup's stable toolchain; it checks formatting, clippy and
-tests, then writes `dist/mirante_<version>_<arch>.deb`. Users need no Rust.
+Targets: Ubuntu 22.04 and 24.04+, Linux Mint 21 and 22, Debian 12 and 13 (LMDE 6
+and 7), all of which ship GTK 3.24 and Yaru. The binaries need glibc 2.34; the
+newer `pidfd_*` functions Rust's standard library uses are weak references,
+so a build on a newer system still runs there.
 
-The package depends on `yaru-theme-gtk`, `yaru-theme-icon` and `pkexec`. It
+`./build.sh` uses rustup's stable toolchain, checks formatting, clippy and
+tests, then builds once and packages once per line of
+`packaging/debian/targets`. It writes `dist/mirante_<version>+<distro>_<arch>.deb`
+with that system's package names (`libgtk-3-0` or `libgtk-3-0t64`, `pkexec` or
+`policykit-1`). Users need no Rust.
+
+The packages depend on `libc6 (>= 2.34)`, GTK 3, `yaru-theme-gtk`,
+`yaru-theme-icon` and `pkexec`. It
 ships the seven plugins in `/usr/lib/mirante/plugins`, the bundles are also
 written to `dist/plugins/`, and installing it makes Mirante the default image
 viewer: `postinst` runs `mirante-plugin-admin refresh`. That writes every
