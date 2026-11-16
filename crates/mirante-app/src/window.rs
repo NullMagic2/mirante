@@ -14,6 +14,7 @@ use crate::{
     plugins,
     render::{self, Job, Renderer},
     settings_dialog,
+    toolbar::Toolbar,
     viewer::Viewer,
 };
 use gtk::{gdk, gio, glib, prelude::*};
@@ -47,11 +48,9 @@ pub struct Window {
     header: gtk::HeaderBar,
     stack: gtk::Stack,
     viewer: Rc<Viewer>,
+    toolbar: Toolbar,
     crop_button: gtk::ToggleButton,
-    /// Apply / Cancel, shown only while cropping.
-    crop_bar: gtk::ActionBar,
     adjust_button: gtk::MenuButton,
-    menu_button: gtk::MenuButton,
     adjust: OnceCell<Rc<AdjustPanel>>,
     renderer: OnceCell<Rc<Renderer>>,
     document: RefCell<Option<Document>>,
@@ -71,6 +70,7 @@ impl Window {
         let keeper = RefCell::new(Some(window.clone()));
         window.window.connect_destroy(move |_| drop(keeper.take()));
         window.window.show_all();
+        window.update_sensitivity();
         window.reload_display_profile();
         if let Some(path) = path {
             window.open(path);
@@ -87,49 +87,17 @@ impl Window {
         window.set_titlebar(Some(&header));
 
         let viewer = Viewer::new();
+        viewer.scrolled.style_context().add_class("mirante-canvas");
         let stack = gtk::Stack::new();
-        let open = gtk::Button::with_label("Open…");
-        open.set_image(Some(&gtk::Image::from_icon_name(
-            Some("document-open-symbolic"),
-            gtk::IconSize::Button,
-        )));
-        open.set_always_show_image(true);
-        open.set_action_name(Some("win.open"));
-        open.set_halign(gtk::Align::Center);
-        open.set_valign(gtk::Align::Center);
-        stack.add_named(&open, EMPTY_PAGE);
+        stack.add_named(&empty_page(), EMPTY_PAGE);
         stack.add_named(&viewer.scrolled, IMAGE_PAGE);
-        let crop_bar = crop_bar();
+        let toolbar = Toolbar::new();
         let content = gtk::Box::new(gtk::Orientation::Vertical, 0);
         content.pack_start(&stack, true, true, 0);
-        content.pack_end(&crop_bar, false, false, 0);
+        content.pack_end(&toolbar.root, false, false, 0);
         window.add(&content);
-
-        let crop_button = gtk::ToggleButton::new();
-        crop_button.set_image(Some(&gtk::Image::from_icon_name(
-            Some("image-crop-symbolic"),
-            gtk::IconSize::Button,
-        )));
-        crop_button.set_tooltip_text(Some("Crop"));
-        let adjust_button = gtk::MenuButton::new();
-        adjust_button.set_image(Some(&gtk::Image::from_icon_name(
-            Some("preferences-color-symbolic"),
-            gtk::IconSize::Button,
-        )));
-        adjust_button.set_tooltip_text(Some("Adjust"));
-        let menu_button = gtk::MenuButton::new();
-        menu_button.set_image(Some(&gtk::Image::from_icon_name(
-            Some("open-menu-symbolic"),
-            gtk::IconSize::Button,
-        )));
-        menu_button.set_tooltip_text(Some("Menu"));
-
-        let navigation = gtk::Box::new(gtk::Orientation::Horizontal, 0);
-        navigation.style_context().add_class("linked");
-        navigation.add(&icon_button("go-previous-symbolic", "Previous", "win.previous"));
-        navigation.add(&icon_button("go-next-symbolic", "Next", "win.next"));
-        header.pack_start(&icon_button("document-open-symbolic", "Open", "win.open"));
-        header.pack_start(&navigation);
+        let (crop_button, adjust_button) =
+            (toolbar.crop_button.clone(), toolbar.adjust_button.clone());
 
         let this = Rc::new_cyclic(|weak: &std::rc::Weak<Self>| {
             let renderer = Renderer::new({
@@ -154,10 +122,9 @@ impl Window {
                 header,
                 stack,
                 viewer,
+                toolbar,
                 crop_button,
-                crop_bar,
                 adjust_button,
-                menu_button,
                 adjust: OnceCell::from(adjust),
                 renderer: OnceCell::from(renderer),
                 document: RefCell::new(None),
@@ -171,16 +138,11 @@ impl Window {
         let weak = Rc::downgrade(&this);
         let language = i18n::selector(move || {
             if let Some(this) = weak.upgrade() {
-                this.menu_button.set_menu_model(Some(&build_menu()));
                 this.update_title();
             }
         });
-        this.header.pack_end(&this.menu_button);
+        this.header.pack_end(&icon_button("emblem-system-symbolic", "Settings", "win.settings"));
         this.header.pack_end(&language);
-        this.header.pack_end(&this.adjust_button);
-        this.header.pack_end(&this.crop_button);
-        this.header.pack_end(&transform_buttons());
-        this.menu_button.set_menu_model(Some(&build_menu()));
 
         this.install_actions(application);
         this.connect_signals();
@@ -341,6 +303,7 @@ impl Window {
         self.crop_button.set_sensitive(loaded);
         self.adjust_button.set_sensitive(loaded);
         self.stack.set_visible_child_name(if loaded { IMAGE_PAGE } else { EMPTY_PAGE });
+        self.toolbar.root.set_visible(loaded);
     }
 
     fn set_action_enabled(&self, name: &str, enabled: bool) {
@@ -448,7 +411,7 @@ impl Window {
     }
 
     fn crop_toggled(self: &Rc<Self>, active: bool) {
-        self.crop_bar.set_visible(active);
+        self.toolbar.set_cropping(active);
         if active {
             let Some((crop, bounds)) = self.document.borrow().as_ref().map(|d| {
                 let size = (d.source.width(), d.source.height());
@@ -622,51 +585,25 @@ impl Window {
     }
 }
 
-/// Rotate left/right and flip horizontally/vertically, as one linked group.
-fn transform_buttons() -> gtk::Box {
-    let group = gtk::Box::new(gtk::Orientation::Horizontal, 0);
-    group.style_context().add_class("linked");
-    group.add(&icon_button("object-rotate-left-symbolic", "Rotate Left", "win.rotate-left"));
-    group.add(&icon_button("object-rotate-right-symbolic", "Rotate Right", "win.rotate-right"));
-    group.add(&icon_button(
-        "object-flip-horizontal-symbolic",
-        "Flip Horizontally",
-        "win.flip-horizontal",
-    ));
-    group.add(&icon_button(
-        "object-flip-vertical-symbolic",
-        "Flip Vertically",
-        "win.flip-vertical",
-    ));
-    group
-}
-
-/// Cancel and Apply for crop mode; hidden until cropping starts.
-fn crop_bar() -> gtk::ActionBar {
-    let bar = gtk::ActionBar::new();
-    let cancel = gtk::Button::with_label("Cancel");
-    cancel.set_action_name(Some("win.crop-cancel"));
-    let apply = gtk::Button::with_label("Apply");
-    apply.set_action_name(Some("win.crop-apply"));
-    apply.style_context().add_class("suggested-action");
-    bar.pack_start(&cancel);
-    bar.pack_end(&apply);
-    // The bar itself stays out of show_all; its buttons are always ready.
-    cancel.show();
-    apply.show();
-    bar.set_no_show_all(true);
-    bar
-}
-
-/// The header menu; rebuilt when the language changes, as menu models are static.
-fn build_menu() -> gio::Menu {
-    let menu = gio::Menu::new();
-    let file = gio::Menu::new();
-    file.append(Some(tr("Export…")), Some("win.export"));
-    file.append(Some(tr("Revert to Original")), Some("win.revert"));
-    menu.append_section(None, &file);
-    let app = gio::Menu::new();
-    app.append(Some(tr("Settings")), Some("win.settings"));
-    menu.append_section(None, &app);
-    menu
+/// The empty window: a picture icon and one large Open button.
+fn empty_page() -> gtk::Box {
+    const ICON_SIZE: i32 = 96;
+    const SPACING: i32 = 18;
+    let page = gtk::Box::new(gtk::Orientation::Vertical, SPACING);
+    page.style_context().add_class("mirante-canvas");
+    let icon = gtk::Image::from_icon_name(Some("image-x-generic-symbolic"), gtk::IconSize::Dialog);
+    icon.set_pixel_size(ICON_SIZE);
+    icon.set_opacity(0.5);
+    let open = gtk::Button::with_label("Open…");
+    open.set_action_name(Some("win.open"));
+    open.style_context().add_class("suggested-action");
+    open.style_context().add_class("mirante-open");
+    let centre = gtk::Box::new(gtk::Orientation::Vertical, SPACING);
+    centre.set_halign(gtk::Align::Center);
+    centre.set_valign(gtk::Align::Center);
+    centre.set_vexpand(true);
+    centre.add(&icon);
+    centre.add(&open);
+    page.add(&centre);
+    page
 }

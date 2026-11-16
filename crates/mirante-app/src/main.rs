@@ -16,7 +16,9 @@ mod plugins;
 mod render;
 mod settings;
 mod settings_dialog;
+mod style;
 mod theme;
+mod toolbar;
 mod translations;
 mod viewer;
 mod window;
@@ -38,6 +40,7 @@ fn main() -> glib::ExitCode {
 
     application.connect_startup(|_| {
         theme::apply_yaru();
+        style::install();
         i18n::load();
     });
     application.connect_activate(|application| {

@@ -227,11 +227,15 @@ Editing is non-destructive for every format; no image file is ever written over.
 
 ## Application
 
-- `window.rs` owns the `Document` (path, shared working image, edits, store key)
-  and the header bar: Open, Previous/Next … Rotate left/right and Flip
-  horizontally/vertically (one linked group), Crop, Adjust, Language, Menu.
-  Ctrl+R rotates right and Ctrl+Shift+R rotates left. Rotating and flipping act
+- `window.rs` owns the `Document` (path, shared working image, edits, store key).
+  The title bar holds only the file name, the language flag and Settings.
+- `toolbar.rs` is the bottom bar of large flat buttons, in three groups:
+  Open/Previous/Next; Rotate/Flip, Crop, Adjust; Zoom out/Fit/Zoom in,
+  Revert, Export. While cropping it swaps to Cancel and Apply.
+- Ctrl+R rotates right and Ctrl+Shift+R rotates left. Rotating and flipping act
   on the picture as displayed and are paused while cropping.
+- `style.rs` adds the dark photo canvas, the toolbar's padding and rounded
+  tool buttons on top of Yaru. An empty window shows a large Open button.
 - Cropping:
   - The selection starts as the whole image (or the current crop), with
     handles on its corners and edges.

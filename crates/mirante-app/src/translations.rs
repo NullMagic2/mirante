@@ -39,7 +39,9 @@ pub const CATALOG: &[(&str, [&str; 3])] = &[
     ("ICC profiles", ["Perfis ICC", "Προφίλ ICC", "Perfiles ICC"]),
     ("All images", ["Todas as imagens", "Όλες οι εικόνες", "Todas las imágenes"]),
     ("Language", ["Idioma", "Γλώσσα", "Idioma"]),
-    ("Menu", ["Menu", "Μενού", "Menú"]),
+    ("Zoom In", ["Ampliar", "Μεγέθυνση", "Acercar"]),
+    ("Zoom Out", ["Reduzir", "Σμίκρυνση", "Alejar"]),
+    ("Best Fit", ["Ajustar à janela", "Προσαρμογή στο παράθυρο", "Ajustar a la ventana"]),
     ("Apply", ["Aplicar", "Εφαρμογή", "Aplicar"]),
     (
         "Could not open the image",
