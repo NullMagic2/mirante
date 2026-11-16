@@ -1,0 +1,66 @@
+# Module: mirante.workspace
+# Purpose: Declare the workspace members; gtk is the only third-party crate.
+# Created: 2026-11-16
+# Architecture: Format plugins live under plugins/; see ARCHITECTURE.md.
+
+[workspace]
+resolver = "3"
+members = [
+    "crates/mirante-core",
+    "crates/mirante-codec",
+    "crates/mirante-color",
+    "crates/mirante-edit",
+    "crates/mirante-plugin",
+    "crates/mirante-raw",
+    "crates/mirante-app",
+    "plugins/bmp",
+    "plugins/png",
+    "plugins/jpeg",
+    "plugins/tiff",
+    "plugins/heic",
+    "plugins/raw",
+    "plugins/raw/makers/canon",
+    "plugins/raw/makers/fuji",
+    "plugins/raw/makers/nikon",
+    "plugins/raw/makers/olympus",
+    "plugins/raw/makers/panasonic",
+    "plugins/raw/makers/pentax",
+    "plugins/raw/makers/sony",
+    "plugins/psd",
+]
+
+[workspace.package]
+version = "0.1.3"
+edition = "2024"
+rust-version = "1.85"
+license = "GPL-3.0-or-later"
+publish = false
+
+[workspace.dependencies]
+mirante-core = { path = "crates/mirante-core" }
+mirante-color = { path = "crates/mirante-color" }
+mirante-edit = { path = "crates/mirante-edit" }
+mirante-codec = { path = "crates/mirante-codec" }
+mirante-plugin = { path = "crates/mirante-plugin" }
+mirante-raw = { path = "crates/mirante-raw" }
+mirante-raw-canon = { path = "plugins/raw/makers/canon" }
+mirante-raw-fuji = { path = "plugins/raw/makers/fuji" }
+mirante-raw-nikon = { path = "plugins/raw/makers/nikon" }
+mirante-raw-olympus = { path = "plugins/raw/makers/olympus" }
+mirante-raw-panasonic = { path = "plugins/raw/makers/panasonic" }
+mirante-raw-pentax = { path = "plugins/raw/makers/pentax" }
+mirante-raw-sony = { path = "plugins/raw/makers/sony" }
+mirante-format-bmp = { path = "plugins/bmp" }
+mirante-format-png = { path = "plugins/png" }
+mirante-format-jpeg = { path = "plugins/jpeg" }
+mirante-format-tiff = { path = "plugins/tiff" }
+mirante-format-heic = { path = "plugins/heic" }
+mirante-format-raw = { path = "plugins/raw" }
+mirante-format-psd = { path = "plugins/psd" }
+gtk = "=0.18.2"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+lto = "thin"

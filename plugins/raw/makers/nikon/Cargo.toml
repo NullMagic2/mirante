@@ -1,0 +1,21 @@
+# Module: mirante.raw.nikon.manifest
+# Purpose: Decodes Nikon camera RAW files (NEF, NRW) into a NativeRaw.
+# Created: 2026-11-16
+# Architecture: A library used by the RAW plugin; development is mirante-raw's job.
+
+[package]
+name = "mirante-raw-nikon"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-core.workspace = true
+mirante-codec.workspace = true
+mirante-raw.workspace = true
+mirante-format-jpeg.workspace = true

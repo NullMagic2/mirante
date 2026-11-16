@@ -1,0 +1,6 @@
+#!/bin/sh
+# Hand image types back to the previous defaults before the files disappear.
+set -e
+if [ "$1" = "remove" ] || [ "$1" = "deconfigure" ]; then
+    /usr/lib/mirante/mirante-plugin-admin release-defaults || true
+fi

@@ -1,0 +1,20 @@
+# Module: mirante.raw.panasonic.manifest
+# Purpose: Decodes Panasonic camera RAW files (RW2, RWL) into a NativeRaw.
+# Created: 2026-11-16
+# Architecture: A library used by the RAW plugin; development is mirante-raw's job.
+
+[package]
+name = "mirante-raw-panasonic"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-core.workspace = true
+mirante-codec.workspace = true
+mirante-raw.workspace = true

@@ -1,0 +1,28 @@
+# Module: mirante.app.manifest
+# Purpose: The GTK 3 image viewer window.
+# Created: 2026-11-16
+# Architecture: Composes the registry, colour pipeline and editor; see ARCHITECTURE.md.
+
+[package]
+name = "mirante"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+gtk.workspace = true
+mirante-core.workspace = true
+mirante-codec.workspace = true
+mirante-color.workspace = true
+mirante-edit.workspace = true
+mirante-format-png.workspace = true
+mirante-plugin.workspace = true
+
+[[bin]]
+name = "mirante"
+path = "src/main.rs"

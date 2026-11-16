@@ -1,0 +1,18 @@
+# Module: mirante.edit.manifest
+# Purpose: Non-destructive crop, resize and colour correction.
+# Created: 2026-11-16
+# Architecture: Operates on working-space images from mirante-color.
+
+[package]
+name = "mirante-edit"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-core.workspace = true

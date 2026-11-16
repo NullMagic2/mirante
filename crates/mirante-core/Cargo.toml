@@ -1,0 +1,17 @@
+# Module: mirante.core.manifest
+# Purpose: Image buffer, format plugin contracts and the plugin registry.
+# Created: 2026-11-16
+# Architecture: Depends on nothing else in the workspace.
+
+[package]
+name = "mirante-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]

@@ -1,0 +1,33 @@
+# Module: mirante.format.raw.manifest
+# Purpose: Registers the camera RAW format plugin.
+# Created: 2026-11-16
+# Architecture: Built on mirante-codec; see ARCHITECTURE.md, Format plugins.
+
+[package]
+name = "mirante-format-raw"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-plugin.workspace = true
+mirante-core.workspace = true
+mirante-codec.workspace = true
+mirante-format-jpeg.workspace = true
+mirante-raw.workspace = true
+mirante-raw-canon.workspace = true
+mirante-raw-fuji.workspace = true
+mirante-raw-nikon.workspace = true
+mirante-raw-olympus.workspace = true
+mirante-raw-panasonic.workspace = true
+mirante-raw-pentax.workspace = true
+mirante-raw-sony.workspace = true
+
+[[bin]]
+name = "mirante-plugin-raw"
+path = "src/main.rs"

@@ -1,0 +1,24 @@
+# Module: mirante.raw.manifest
+# Purpose: What every camera RAW decoder shares: sensor planes, CFA patterns,
+# demosaicing, camera colour and development to linear Rec. 2020.
+# Created: 2026-11-16
+# Architecture: Maker crates under plugins/raw/makers produce a NativeRaw; the
+# RAW plugin develops it. See ARCHITECTURE.md, "RAW".
+
+[package]
+name = "mirante-raw"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-core.workspace = true
+mirante-codec.workspace = true
+mirante-format-jpeg.workspace = true
+mirante-color.workspace = true
+mirante-edit.workspace = true

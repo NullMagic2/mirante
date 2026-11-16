@@ -1,0 +1,22 @@
+[Desktop Entry]
+Type=Application
+Name=Mirante
+GenericName=Image Viewer
+GenericName[pt_BR]=Visualizador de imagens
+GenericName[el]=Προβολή εικόνων
+GenericName[es]=Visor de imágenes
+Comment=View, crop and colour-correct images
+Comment[pt_BR]=Veja, recorte e corrija as cores de imagens
+Comment[el]=Προβολή, περικοπή και διόρθωση χρωμάτων εικόνων
+Comment[es]=Ver, recortar y corregir el color de imágenes
+Exec=mirante %F
+Icon=io.github.mirante.Viewer
+Terminal=false
+StartupNotify=true
+StartupWMClass=mirante
+Categories=Graphics;Viewer;Photography;GTK;
+Keywords=mirante;image;photo;picture;viewer;crop;raw;heic;
+Keywords[pt_BR]=mirante;imagem;foto;visualizador;recortar;raw;heic;
+Keywords[el]=mirante;εικόνα;φωτογραφία;προβολή;περικοπή;raw;heic;
+Keywords[es]=mirante;imagen;foto;visor;recortar;raw;heic;
+MimeType=@MIME_TYPES@

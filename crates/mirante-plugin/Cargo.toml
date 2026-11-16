@@ -1,0 +1,23 @@
+# Module: mirante.plugin.manifest
+# Purpose: Out-of-process format plugins: protocol, manifests, install and removal.
+# Created: 2026-11-16
+# Architecture: Used by every plugin executable, the viewer and the admin helper.
+
+[package]
+name = "mirante-plugin"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-core.workspace = true
+mirante-codec.workspace = true
+
+[[bin]]
+name = "mirante-plugin-admin"
+path = "src/bin/mirante-plugin-admin.rs"

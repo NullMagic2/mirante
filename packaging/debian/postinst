@@ -1,0 +1,6 @@
+#!/bin/sh
+# Make Mirante the default image viewer for every type its plugins open.
+set -e
+if [ "$1" = "configure" ]; then
+    /usr/lib/mirante/mirante-plugin-admin refresh
+fi

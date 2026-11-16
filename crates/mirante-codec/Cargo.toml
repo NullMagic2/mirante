@@ -1,0 +1,18 @@
+# Module: mirante.codec.manifest
+# Purpose: Byte readers, compression and container parsers shared by format plugins.
+# Created: 2026-11-16
+# Architecture: Has no format knowledge of its own; plugins build on it.
+
+[package]
+name = "mirante-codec"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-core.workspace = true

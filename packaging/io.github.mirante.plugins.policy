@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<!-- Lets the viewer install or remove image plugins for every user after an admin password. -->
+<policyconfig>
+  <action id="io.github.mirante.plugins.manage">
+    <description>Manage image plugins for all users</description>
+    <description xml:lang="pt_BR">Gerenciar plugins de imagem para todos os usuários</description>
+    <description xml:lang="el">Διαχείριση προσθέτων εικόνας για όλους τους χρήστες</description>
+    <description xml:lang="es">Administrar complementos de imagen para todos los usuarios</description>
+    <message>Authentication is required to change image plugins for all users</message>
+    <message xml:lang="pt_BR">É necessário autenticar-se para alterar plugins de imagem de todos os usuários</message>
+    <message xml:lang="el">Απαιτείται πιστοποίηση για την αλλαγή προσθέτων εικόνας για όλους τους χρήστες</message>
+    <message xml:lang="es">Se requiere autenticación para cambiar complementos de imagen para todos los usuarios</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/lib/mirante/mirante-plugin-admin</annotate>
+  </action>
+</policyconfig>

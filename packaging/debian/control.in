@@ -1,0 +1,14 @@
+Package: mirante
+Version: @VERSION@
+Architecture: @ARCH@
+Maintainer: Mirante developers <noreply@localhost>
+Section: graphics
+Priority: optional
+Depends: libgtk-3-0t64 | libgtk-3-0, libc6, yaru-theme-gtk, yaru-theme-icon, pkexec | policykit-1
+Recommends: colord
+Provides: image-viewer
+Description: image viewer with cropping and colour correction
+ Views BMP, PNG, JPEG, TIFF, PSD, HEIC and camera RAW images with ICC colour
+ management, and crops and colour-corrects them non-destructively.
+ Each format is a plugin that can be added or removed in Settings, for one
+ user or for everyone. Installing it makes it the default image viewer.

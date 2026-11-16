@@ -1,0 +1,19 @@
+# Module: mirante.color.manifest
+# Purpose: ICC profile parsing and the linear working colour space.
+# Created: 2026-11-16
+# Architecture: Our own matrix/TRC colour engine; knows nothing about GTK.
+
+[package]
+name = "mirante-color"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-core.workspace = true
+mirante-codec.workspace = true

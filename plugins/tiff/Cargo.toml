@@ -1,0 +1,25 @@
+# Module: mirante.format.tiff.manifest
+# Purpose: Registers the TIFF format plugin.
+# Created: 2026-11-16
+# Architecture: Built on mirante-codec; see ARCHITECTURE.md, Format plugins.
+
+[package]
+name = "mirante-format-tiff"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+mirante-plugin.workspace = true
+mirante-core.workspace = true
+mirante-codec.workspace = true
+mirante-format-jpeg.workspace = true
+
+[[bin]]
+name = "mirante-plugin-tiff"
+path = "src/main.rs"

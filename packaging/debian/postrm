@@ -1,0 +1,7 @@
+#!/bin/sh
+# On purge, remove admin-installed plugins and Mirante's system settings.
+set -e
+if [ "$1" = "purge" ]; then
+    rm -rf /usr/local/lib/mirante /etc/mirante /var/lib/mirante
+    rm -f /usr/local/share/applications/io.github.mirante.Viewer.desktop
+fi
