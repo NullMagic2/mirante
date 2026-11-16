@@ -1,10 +1,18 @@
 # Mirante
 
-Welcome! Mirante is an image viewer for Linux, built with GTK 3 and Rust, made
-for Ubuntu, Debian and Linux Mint.
+Mirante is an image viewer for Linux, built with GTK 3 and Rust, made
+for Ubuntu, Debian and Linux Mint with non-destructive editing.
 
-Open a photo, then crop, rotate, flip or colour-correct it without ever touching
-the original file. Mirante remembers your edits for next time, and **Export…**
+# Features
+
+- Cropping, rotating, flipping or color-correcting without ever touching
+the original file.
+
+- Raw file format support
+
+- Exporting
+
+ Mirante remembers your edits for next time, and **Export…**
 writes a new file whenever you want one.
 
 ![Mirante showing a camera RAW photo of a river valley](docs/screenshot.png)
@@ -20,8 +28,6 @@ Colours are managed from start to finish: embedded profiles are honoured, and th
 picture is shown through your monitor's profile, a standard preset or an ICC
 file of your own.
 
-Mirante uses the Yaru theme and speaks English, Português (Brasil), Ελληνικά and
-Español. Pick a language from the flag in the title bar.
 
 ## Install
 
