@@ -7,6 +7,8 @@ Open a photo, then crop, rotate, flip or colour-correct it without ever touching
 the original file. Mirante remembers your edits for next time, and **Export…**
 writes a new file whenever you want one.
 
+![Mirante showing a camera RAW photo of a river valley](docs/screenshot.png)
+
 ## What it opens
 
 PNG, JPEG, TIFF, BMP, Photoshop PSD, HEIC/HEIF and camera RAW files from Canon,

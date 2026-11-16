@@ -235,7 +235,11 @@ Editing is non-destructive for every format; no image file is ever written over.
 - Ctrl+R rotates right and Ctrl+Shift+R rotates left. Rotating and flipping act
   on the picture as displayed and are paused while cropping.
 - `style.rs` adds the dark photo canvas, the toolbar's padding and rounded
-  tool buttons on top of Yaru. An empty window shows a large Open button.
+  tool buttons on top of Yaru. Each tool group has its own colour (`Tint`),
+  used for its icons and a faint hover or checked background: blue browse,
+  purple rotate/flip, orange crop, teal zoom, red revert, green export. Adjust
+  shows a drawn red/green/blue additive triad. An empty window shows a large
+  Open button.
 - Cropping:
   - The selection starts as the whole image (or the current crop), with
     handles on its corners and edges.

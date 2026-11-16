@@ -401,7 +401,7 @@ dependencies = [
 
 [[package]]
 name = "mirante"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "gtk",
  "mirante-codec",
@@ -414,14 +414,14 @@ dependencies = [
 
 [[package]]
 name = "mirante-codec"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-core",
 ]
 
 [[package]]
 name = "mirante-color"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -429,18 +429,18 @@ dependencies = [
 
 [[package]]
 name = "mirante-core"
-version = "0.1.4"
+version = "0.1.5"
 
 [[package]]
 name = "mirante-edit"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-core",
 ]
 
 [[package]]
 name = "mirante-format-bmp"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -449,7 +449,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-format-heic"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -459,7 +459,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-format-jpeg"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -468,7 +468,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-format-png"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -477,7 +477,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-format-psd"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -486,7 +486,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-format-raw"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -504,7 +504,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-format-tiff"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -514,7 +514,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-plugin"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -522,7 +522,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-raw"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-color",
@@ -533,7 +533,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-raw-canon"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -543,7 +543,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-raw-fuji"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -552,7 +552,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-raw-nikon"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -562,7 +562,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-raw-olympus"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -571,7 +571,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-raw-panasonic"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -580,7 +580,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-raw-pentax"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
@@ -590,7 +590,7 @@ dependencies = [
 
 [[package]]
 name = "mirante-raw-sony"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "mirante-codec",
  "mirante-core",
